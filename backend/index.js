@@ -1,20 +1,10 @@
-import sql from "mysql"
 import express from "express"
 import bodyParser from "body-parser"
-// const sql = require('mysql');
-// const express = require('express');
-// const bodyParser = require('body-parser');
+import con from "./config/database.js"
+
 const PORT = process.env.PORT || 8080;
 var app = express();
 app.use(express.json())
-var con = sql.createConnection( 
-    {
-        host: "db4free.net",
-        user: "tubesstima3",
-        password : "tubesstima3",
-        database : "penyakit"
-    }
-);
 
 con.connect(function(err) {
     if (err) throw err;
