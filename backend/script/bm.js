@@ -27,21 +27,13 @@ function bmMatch(text, pattern) {
     }
 
 
-    function buildLast(pattern) {
-        let last = [];
-        for(let i=0; i < 128; i++) {
-            last[i] = -1;
-        }
-        for (let i = 0; i < pattern.length; i++){
-            last[pattern[i].charCodeAt(0)] = i; 
-        }
-        return last;
+function buildLast(pattern) {
+    let last = [];
+    for(let i=0; i < 128; i++) {
+        last[i] = -1;
     }
-
-
-let text = "SAYA MAKAN SAPI tadi pagi";
-let pattern = "tadi";
-// let npos = bmMatch(pattern,text);
-// console.log(npos);
-let npos2 = bmMatch(text,pattern);
-console.log(npos2);
+    for (let i = 0; i < pattern.length; i++){
+        last[pattern[i].charCodeAt(0)] = i; 
+    }
+    return last;
+}
