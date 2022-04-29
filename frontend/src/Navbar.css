@@ -1,0 +1,50 @@
+.navbar {
+    font-weight:lighter;
+    font-size: x-large;
+    /* font-family: 'Monda', sans-serif; */
+    width: 100%;
+    min-height: 70px;
+    margin-top:0;
+}
+
+ul {
+    list-style-type: none;
+    /* margin: -10px; */
+    padding: 0;
+    overflow: hidden;
+    background-color: #0B100F;
+    min-height: 70px;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    min-height: 70px;
+    box-sizing: border-box;
+}
+
+li a:hover {
+    background-color: #8a0303;
+    transition: all ease 0.4s;
+}
+.logo-container {
+  height: 100%;
+}
+.logo {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    float:left;
+    padding: 18px 16px;
+    background-color: #8a0303;
+    height: 70px;
+    box-sizing: border-box;
+}
