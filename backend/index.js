@@ -117,7 +117,7 @@ app.post("/search", function(req,res) {
 })
 
 app.post("/penyakit/add", function(req, res) {
-    const data = req.body; //harusnya req
+    const data = req.body; //ha
     console.log(data);
     let query = "INSERT INTO sequence (Nama_Penyakit, DNASequence) VALUES ('"+data.Nama_Penyakit + "','"+ data.DNASequence + "');";
     con.query(query, function(error,result,fields) {
@@ -137,6 +137,9 @@ app.post("/hasil/add", function(req,res) {
     let dis = data.Nama_Penyakit;
     let pred = "False";
     let i = 0;
+    if (/^[ATGC]+$/.test(seq) == false) {
+        res.json({message:"Invalid input"});
+    }
     con.query("SELECT * FROM sequence", function(error,result,fields) {
         for (i=0;i < result.length;i++) {
             if(kmpMatch(seq, result[i].DNASequence) > -1) {
