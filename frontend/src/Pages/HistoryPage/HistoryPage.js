@@ -4,15 +4,6 @@ import React, {useEffect, useState} from "react";
 const HistoryPage = () => {
     const [query, setQuery] = useState('');
     const [rengsult, setRengsult] = useState([]);
-    const tanggal = [];
-    // useEffect(() => {
-    //     getResultData();
-    // },[]);
-
-    // const getResultData = async () => {
-    //     const response = await fetch("http://localhost:8080/search");
-    //     setRengsult(response.data);
-    // }
     
     const submit =  (event) => {
         event.preventDefault();
@@ -30,12 +21,6 @@ const HistoryPage = () => {
               return date;
           });
 
-          for(let i = 0; i < rengsult.length;i++) {
-              let date = new Date(rengsult[i].tanggal);
-              let nowdate = date.getDate() + 1;
-              let stringdate = date.getFullYear()+'-'+date.getMonth()+'-'+nowdate;
-              tanggal.push(stringdate);
-          }
     }
 
     return (
@@ -82,7 +67,7 @@ const HistoryPage = () => {
                     <tbody>
                         { rengsult.map((result) => (
                             <tr>
-                                <td>{Date(result.Tanggal)}</td>
+                                <td>{result.Tanggal}</td>
                                 <td>{result.Nama}</td>
                                 <td>{result.Nama_Penyakit}</td>
                                 <td>{result.Prediksi}</td>

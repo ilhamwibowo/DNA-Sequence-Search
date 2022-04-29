@@ -53,9 +53,17 @@ app.post("/search", function(req,res) {
                 for (let i = 0;i < result.length;i++ ){
                     let date = new Date(result[i].Tanggal);
                     let month = date.getMonth()+1;
-                    let stringdate = date.getFullYear()+'-'+month+'-'+date.getDate();
+                    let datenow = date.getDate();
+                    if (month < 10) {
+                        month = '0'+month;
+                    }
+                    if (datenow < 10) {
+                        datenow = '0'+datenow
+                    }
+                    let stringdate = date.getFullYear()+'-'+month+'-'+datenow;
                     if (stringdate == search[0]) {
                         if (nama_penyakit == result[i].Nama_Penyakit) {
+                            result[i].Tanggal = stringdate;
                             ret.push(result[i]);
                         }
                     }
@@ -66,9 +74,16 @@ app.post("/search", function(req,res) {
                 for (let i = 0;i < result.length;i++ ){
                     let date = new Date(result[i].Tanggal);
                     let month = date.getMonth()+1;
-                    let stringdate = date.getFullYear()+'-'+month+'-'+date.getDate();
-                    console.log(stringdate);
+                    let datenow = date.getDate();
+                    if (month < 10) {
+                        month = '0'+month;
+                    }
+                    if (datenow < 10) {
+                        datenow = '0'+datenow
+                    }
+                    let stringdate = date.getFullYear()+'-'+month+'-'+datenow;
                     if (stringdate == search[0]) {
+                        result[i].Tanggal = stringdate;
                         ret.push(result[i]);
                     }
                 }
@@ -81,6 +96,17 @@ app.post("/search", function(req,res) {
             console.log(nama_penyakit);
             for (let i = 0;i < result.length;i++ ){
                 if (nama_penyakit == result[i].Nama_Penyakit) {
+                    let date = new Date(result[i].Tanggal);
+                    let month = date.getMonth()+1;
+                    let datenow = date.getDate();
+                    if (month < 10) {
+                        month = '0'+month;
+                    }
+                    if (datenow < 10) {
+                        datenow = '0'+datenow
+                    }
+                    let stringdate = date.getFullYear()+'-'+month+'-'+datenow;
+                    result[i].Tanggal = stringdate;
                     ret.push(result[i]);
                 }
             }
@@ -107,7 +133,6 @@ app.post("/penyakit/add", function(req, res) {
  
 app.post("/hasil/add", function(req,res) {
     const data = req.body;
-    let name = data.Nama;
     let seq = data.DNASequence;
     let dis = data.Nama_Penyakit;
     let pred = "False";

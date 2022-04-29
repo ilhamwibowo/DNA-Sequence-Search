@@ -40,3 +40,10 @@ function regexDisease(input)
     // resArray[resArray.length - 1][0] for input type identifier
     return resArray;
 }
+
+function isTanggal(str) {
+    return /^[0-9-]+$/.test(str);
+}
+
+
+export default isTanggal;
