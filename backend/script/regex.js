@@ -45,7 +45,5 @@ function isTanggal(str) {
     return /^[0-9-]+$/.test(str);
 }
 
-function isSafe(str) {
-    return /^[ATGC]+$/.test(str);
-}
-export default isTanggal, isSafe;
+
+export default isTanggal;

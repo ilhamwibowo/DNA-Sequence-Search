@@ -18,7 +18,7 @@ function App() {
         <Navbar />
         <div className="content">
           <Routes>
-            <Route path="/test" element={<DNAPage/>}/>
+            <Route path="/" element={<DNAPage/>}/>
             <Route path="/disease" element={<DiseasePage/>}/>
             <Route path="/history" element={<HistoryPage/>}/>
           </Routes>
