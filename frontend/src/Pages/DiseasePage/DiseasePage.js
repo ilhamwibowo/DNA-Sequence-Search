@@ -1,29 +1,45 @@
-import React, {useRef, useState} from "react";
+import React, { useState} from "react";
 import './DiseasePage.css';
-import axios from "axios";
 
 const DiseasePage = (props) => {
-    const [files, setFiles] = useState("empty.txt");
-    
-    const hiddenFileInput = useRef(null);
-    
-    const uploadPicker = (event) => {
-        event.preventDefault();
-        hiddenFileInput.current.click();
-    }
-    /*
+    const [diseaseName, setDiseaseName] = useState('');
+    const [files, setFiles] = useState(null);
+
     const uploadHandler = (event) => {
         const file = event.target.files[0];
         setFiles(file);
     }
 
-    const removeFile = (filename) => {
-        setFiles(files.filter(file => file.name !== filename))
-    }
     const submitDisease = (event) => {
-        event.preventDefault();
-        //axios.post('http://localhost:8080/penyakit/add')
-    }*/
+        // console.log(diseaseName);
+        // alert(diseaseName);
+        var file = files;
+        var textType = /text.*/;
+        if (file.type.match(textType)) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var content = reader.result;
+                let data = {
+                    Nama_Penyakit:diseaseName,
+                    DNASequence:content
+                };
+                fetch('http://localhost:8080/penyakit/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                  }).then(function(response) {
+                    console.log(response)
+                    return response.json();
+                  });
+                alert("Success!");
+            }
+    
+            reader.readAsText(file);    
+        }
+
+    }
     return (
         <div className='diseasePage'>
             <div className='diseaseTitle'>
@@ -31,12 +47,12 @@ const DiseasePage = (props) => {
             </div>
             <div className='diseaseBody'>
                 <div className='diseaseForm'>
-                    <form method="post">
+                    <form onSubmit={submitDisease}>
                         <table>
                             <tr>
                                 <td>
                                     <label for="diseaseNameInput">
-                                        Nama Pengguna:
+                                        Nama Penyakit:
                                     </label>
                                 </td>
                                 <td>
@@ -47,16 +63,26 @@ const DiseasePage = (props) => {
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="diseaseNameInput" placeholder="<pengguna>" />
+                                    <input 
+                                        type="text" 
+                                        name="diseaseNameInput" 
+                                        placeholder="<pengguna>"
+                                        value={ diseaseName } 
+                                        onChange={(e) => setDiseaseName(e.target.value)}
+                                    />
                                 </td>
                                 <td>
-                                    <button onClick={uploadPicker}>upload file...</button>
-                                    <input type='file' ref={hiddenFileInput} name="diseaseFileInput" id="diseaseGetFile" style={{display: 'none'}} /*onChange={uploadHandler}*/ />
-                                    <label>{props.fileNameDisease}</label>
+                                    {/* <button onClick={uploadPicker}>upload file...</button> */}
+                                    <input 
+                                        type='file' 
+                                        name="diseaseFileInput" 
+                                        onChange={uploadHandler}
+                                    />
+                                    {/* <label>{props.fileNameDisease}</label> */}
                                 </td>
                             </tr>
                         </table>
-                        <input type="submit" value="Submit" /*onClick={submitDisease}*//>
+                        <button type="submit" >Submit</button>
                     </form>
                 </div>
             </div>
