@@ -4,6 +4,7 @@ import con from "./config/database.js"
 import cors from 'cors'
 import kmpMatch from "./script/kmp.js"
 import bmMatch from "./script/bm.js"
+import isTanggal from "./script/regex.js"
 
 const PORT = process.env.PORT || 8080;
 
@@ -37,6 +38,55 @@ app.get("/fetch/test", function(req,res) {
         }
     })
 })
+
+app.post("/search", function(req,res) {
+    const data = req.body;
+    console.log(data);
+    let search = data.query.split(' '); //split untuk mengecek jumlah argumen
+    let ret = [];
+    con.query("SELECT * FROM hasil", function(error,result,fields) {
+        
+        if (isTanggal(search[0])) {
+            if (search.length > 1) {
+                let nama_penyakit = search.slice(1,search.length).join(" ")
+                console.log(nama_penyakit);
+                for (let i = 0;i < result.length;i++ ){
+                    let date = new Date(result[i].Tanggal);
+                    let stringdate = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate();
+                    if (stringdate == search[0]) {
+                        if (nama_penyakit == result[i].Nama_Penyakit) {
+                            ret.push(result[i]);
+                        }
+                    }
+                }
+                res.json(ret);
+            }
+            else {
+                for (let i = 0;i < result.length;i++ ){
+                    let date = new Date(result[i].Tanggal);
+                    let stringdate = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate();
+                    if (stringdate == search[0]) {
+                        ret.push(result[i]);
+                    }
+                }
+                res.json(ret);
+            }
+
+        }
+        else {
+            let nama_penyakit = search.join(" ")
+            console.log(nama_penyakit);
+            for (let i = 0;i < result.length;i++ ){
+                if (nama_penyakit == result[i].Nama_Penyakit) {
+                    ret.push(result[i]);
+                }
+            }
+            res.json(ret);
+        }
+
+    })
+})
+
 app.post("/penyakit/add", function(req, res) {
     const data = req.body; //harusnya req
     console.log(data);
@@ -86,8 +136,6 @@ app.post("/hasil/add", function(req,res) {
         }) 
         
     })
-
-
 
 })
 
