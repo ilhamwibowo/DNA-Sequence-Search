@@ -1,6 +1,6 @@
 import './HistoryPage.css';
 import React, {useEffect, useState} from "react";
-
+import axios from 'axios';
 const HistoryPage = () => {
     const [query, setQuery] = useState('');
     const [rengsult, setRengsult] = useState([]);
@@ -14,10 +14,11 @@ const HistoryPage = () => {
     //     setRengsult(response.data);
     // }
     
-    const submit = async () => {
+    const submit =  (event) => {
+        event.preventDefault();
         //do something
         alert("hoe");
-        let response = await fetch('http://localhost:8080/search', {
+        let response =  fetch('http://localhost:8080/search', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -26,8 +27,18 @@ const HistoryPage = () => {
           }).then((response) => response.json())
           .then((date) => {
               setRengsult(date);
+
               return date;
           });
+        // let response = await axios.post('http://localhost:8080/search',{
+        //     query:query
+        // }).then(function(response) {
+        //     alert(response[0].Nama_Penyakit);
+        //     return response;
+        // })
+
+        alert(response);
+        alert("slfjas;ldfkjasl;jfasl;kjfl;kasdjfl;asj");
     }
 
     return (
