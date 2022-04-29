@@ -1,8 +1,11 @@
 import React from 'react'
 
-const ResultLabel = ({files}) => {
+const ResultLabel = (data) => {
   return (
-    <div><p>{files}</p></div>
+    <div className='resultLabel'>
+      <p>{data.currentdate}</p>
+      <p>{data.pred}</p>
+    </div>
   )
 }
 
