@@ -1,0 +1,22 @@
+.diseaseTitle {
+    font-family: 'Roboto';
+}
+
+.diseaseForm {
+    width: 100%;
+    margin: 0;
+}
+
+.diseaseForm table {
+    width: 25%;
+    margin: auto;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    font-family: 'Courier New';
+    text-align: left;
+    background-color: lightgoldenrodyellow;
+}
+
+button {
+    font-family: 'Trebuchet MS';
+}

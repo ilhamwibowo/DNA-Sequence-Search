@@ -55,7 +55,7 @@ const HistoryPage = () => {
                         <button type="submit" >Submit</button>
                     </form>
                 </div>
-                <table className="table table-striped"> 
+                <table className="table_table-striped"> 
                     <thead>
                         <tr>
                             <th>Tanggal</th>

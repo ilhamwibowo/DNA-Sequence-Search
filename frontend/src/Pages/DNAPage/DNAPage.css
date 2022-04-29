@@ -1,0 +1,31 @@
+.dnaTitle {
+    font-family: 'Roboto'
+}
+
+.dnaForm {
+    width: 100%;
+    margin: 0;
+}
+
+.dnaForm table {
+    width: 30%;
+    margin: auto;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    font-family: 'Courier New';
+    text-align: left;
+    background-color: lightgoldenrodyellow;
+}
+
+.dnaForm table tr {
+    height: 25px;
+    vertical-align: center;
+}
+
+.dnaResult {
+    font-family: 'Tahoma';
+}
+
+button {
+    font-family: 'Trebuchet MS';
+}

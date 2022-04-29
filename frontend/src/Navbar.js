@@ -1,17 +1,14 @@
 import { Link } from "react-router-dom";
+import './Navbar.css';
 
 const Navbar = () => {
   return (
     <div className="navbar">
-      <div className="logo-container">
-        <p className="logo" style = {{color:"white"}}>DNA Sequence Checker</p>
-      </div>
-      <ul>
-        {/* <li>The Secure Generator</li> */}
-        <li><Link to="/test">Check DNA Sequence</Link></li>
-        <li><Link to="/history">Search</Link></li>
-        <li><Link to="/disease">Add DNA Sequence</Link></li>
-      </ul>
+      <table className='topTable'>
+          <td className="leftCell"><Link to="/test">Check DNA Sequence</Link></td>
+          <td className="middleCell"><Link to="/history">Search</Link></td>
+          <td className="rightCell"><Link to="/disease">Add DNA Sequence</Link></td>
+      </table>
     </div>
   );
 }

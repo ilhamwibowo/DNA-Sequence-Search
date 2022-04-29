@@ -1,8 +1,8 @@
+import './App.css';
 import Navbar from "./Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React from "react";
 import DiseasePage from './Pages/DiseasePage/DiseasePage';
-import ResultLabel from './Pages/DiseasePage/ResultLabel';
 import DNAPage from './Pages/DNAPage/DNAPage';
 import HistoryPage from './Pages/HistoryPage/HistoryPage';
 
@@ -14,9 +14,8 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <h1 className='bigTitle'>DNA SEQUENCE PATTERN CHECKER</h1>
         <Navbar />
-        {/*<DiseasePage fileNameDisease={fileNameDisease}/>*/}
-        {/*<ResultLabel file={resultLabel}/>*/}
         <div className="content">
           <Routes>
             <Route path="/test" element={<DNAPage/>}/>

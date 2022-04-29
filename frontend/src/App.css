@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.bigTitle {
+  color: grey;
+  font-family: 'Trebuchet MS';
+  text-align: center;
+  vertical-align: center;
+  background-color: darkblue;
+  background-size: 100%;
+  background-size: cover;
+  margin: 0;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+

@@ -48,3 +48,45 @@ li a:hover {
     height: 70px;
     box-sizing: border-box;
 }
+
+.topTable {
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    background-color: black;
+}
+
+.leftCell {
+    text-align: center;
+    color: white;
+}
+
+
+.middleCell {
+    text-align: center;
+}
+
+
+.rightCell {
+    text-align: center;
+}
+
+.topTable a {
+    color: white;
+}
+.topTable a:visited {
+    color: white;
+    text-decoration: none;
+}
+.topTable a:focus {
+    color: white;
+    text-decoration: none;
+}
+.topTable a:link {
+    color: white;
+    text-decoration: none;
+}
+.topTable a:active {
+    color: lightcoral;
+    text-decoration: none;
+}

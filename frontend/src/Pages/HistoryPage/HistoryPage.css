@@ -1,0 +1,29 @@
+.historyTitle {
+    font-family: 'Roboto';
+}
+
+.historyForm {
+    width: 100%;
+    margin: 0;
+}
+
+.historyForm table {
+    width: 10%;
+    margin: auto;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    font-family: 'Courier New';
+    background-color: lightgoldenrodyellow;
+}
+
+.table_table-striped {
+    width: 90%;
+    margin: auto;
+    border: 1px solid grey;
+    border-radius: 5px;
+    font-family: 'Tahoma';
+}
+
+button {
+    font-family: 'Trebuchet MS';
+}
