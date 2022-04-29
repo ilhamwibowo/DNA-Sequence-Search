@@ -37,3 +37,6 @@ function buildLast(pattern) {
     }
     return last;
 }
+
+
+export default bmMatch;

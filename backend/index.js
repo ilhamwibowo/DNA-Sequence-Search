@@ -80,7 +80,7 @@ app.post("/hasil/add", function(req,res) {
                 res.json(error);
             }
             else {
-                res.json({message:"Success!"});
+                res.json({currentdate:currentdate, pred:pred});
             }
 
         }) 
