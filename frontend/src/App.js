@@ -4,7 +4,8 @@ import React from "react";
 import DiseasePage from './Pages/DiseasePage/DiseasePage';
 import ResultLabel from './Pages/DiseasePage/ResultLabel';
 import DNAPage from './Pages/DNAPage/DNAPage';
-import HistoryPage from "./Pages/HistoryPage/HistoryPage.js"
+import HistoryPage from './Pages/HistoryPage/HistoryPage';
+
 function App() {
   // const [data,setData] = React.useState(null);
   // const [fileNameDisease, setFileNameDisease] = React.useState([]);
