@@ -2,10 +2,16 @@ import express from "express"
 import bodyParser from "body-parser"
 import con from "./config/database.js"
 import cors from 'cors'
+import kmpMatch from "./script/kmp.js"
+import bmMatch from "./script/bm.js"
+
 const PORT = process.env.PORT || 8080;
+
 var app = express();
+
 app.use(express.json())
 app.use(cors())
+
 con.connect(function(err) {
     if (err) throw err;
     console.log("Database Connected!");   
@@ -17,12 +23,20 @@ app.get("/", function(req,res) {
 })
 
 
-app.get("/fetch", function(req,res) {
+app.get("/fetch/sequence", function(req,res) {
     con.query("SELECT * FROM sequence", function(error,result,fields) {
         res.json(result);
     })
 })
 
+app.get("/fetch/test", function(req,res) {
+    con.query("SELECT * FROM hasil", function(error,result,fields) {
+        res.json(result);
+        for (let i = 0;i < result.length;i++) {
+            let date = new Date(result[i].Tanggal);
+        }
+    })
+})
 app.post("/penyakit/add", function(req, res) {
     const data = req.body; //harusnya req
     console.log(data);
@@ -40,16 +54,41 @@ app.post("/penyakit/add", function(req, res) {
  
 app.post("/hasil/add", function(req,res) {
     const data = req.body;
-    let query = "INSERT INTO hasil (Tanggal, Nama, Nama_Penyakit,Prediksi) VALUES ('"+data.Nama + "','"+ data.Nama_Penyakit + "','"+data.Prediksi + "');";
-    con.query(query, function(error,result,fields) {
-        if (error) {
-            res.json(error);
+    let name = data.Nama;
+    let seq = data.DNASequence;
+    let dis = data.Nama_Penyakit;
+    let pred = "False";
+    let i = 0;
+    con.query("SELECT * FROM sequence", function(error,result,fields) {
+        for (i=0;i < result.length;i++) {
+            if(kmpMatch(seq, result[i].DNASequence) > -1) {
+                if(result[i].Nama_Penyakit == dis) {
+                    pred = "True";
+                }
+                break;
+            }
         }
-        else {
-            res.json({message:"Success!"});
-        }
+        let date_ob = new Date();
+        let date = date_ob.getDate();
+        let month = (date_ob.getMonth() + 1);
+        let year = date_ob.getFullYear();
 
-    }) 
+        let currentdate = year+'-'+month+'-'+date;
+        let query = "INSERT INTO hasil (Tanggal, Nama, Nama_Penyakit,Prediksi) VALUES (date('"+currentdate+"'),'"+data.Nama + "','"+ data.Nama_Penyakit + "','"+pred + "');";
+        con.query(query, function(error,result,fields) {
+            if (error) {
+                res.json(error);
+            }
+            else {
+                res.json({message:"Success!"});
+            }
+
+        }) 
+        
+    })
+
+
+
 })
 
 app.delete("/penyakit/delete", function(req,res) {
