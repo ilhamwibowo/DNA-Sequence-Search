@@ -1,10 +1,10 @@
 import './HistoryPage.css';
 import React, {useEffect, useState} from "react";
-import axios from 'axios';
+
 const HistoryPage = () => {
     const [query, setQuery] = useState('');
     const [rengsult, setRengsult] = useState([]);
-    
+    const tanggal = [];
     // useEffect(() => {
     //     getResultData();
     // },[]);
@@ -30,6 +30,12 @@ const HistoryPage = () => {
               return date;
           });
 
+          for(let i = 0; i < rengsult.length;i++) {
+              let date = new Date(rengsult[i].tanggal);
+              let nowdate = date.getDate() + 1;
+              let stringdate = date.getFullYear()+'-'+date.getMonth()+'-'+nowdate;
+              tanggal.push(stringdate);
+          }
     }
 
     return (
@@ -76,7 +82,7 @@ const HistoryPage = () => {
                     <tbody>
                         { rengsult.map((result) => (
                             <tr>
-                                <td>{result.Tanggal}</td>
+                                <td>{Date(result.Tanggal)}</td>
                                 <td>{result.Nama}</td>
                                 <td>{result.Nama_Penyakit}</td>
                                 <td>{result.Prediksi}</td>

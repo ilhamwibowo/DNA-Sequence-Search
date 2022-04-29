@@ -52,7 +52,8 @@ app.post("/search", function(req,res) {
                 console.log(nama_penyakit);
                 for (let i = 0;i < result.length;i++ ){
                     let date = new Date(result[i].Tanggal);
-                    let stringdate = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate();
+                    let month = date.getMonth()+1;
+                    let stringdate = date.getFullYear()+'-'+month+'-'+date.getDate();
                     if (stringdate == search[0]) {
                         if (nama_penyakit == result[i].Nama_Penyakit) {
                             ret.push(result[i]);
@@ -64,7 +65,9 @@ app.post("/search", function(req,res) {
             else {
                 for (let i = 0;i < result.length;i++ ){
                     let date = new Date(result[i].Tanggal);
-                    let stringdate = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate();
+                    let month = date.getMonth()+1;
+                    let stringdate = date.getFullYear()+'-'+month+'-'+date.getDate();
+                    console.log(stringdate);
                     if (stringdate == search[0]) {
                         ret.push(result[i]);
                     }
