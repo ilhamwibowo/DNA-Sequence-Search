@@ -17,7 +17,6 @@ const HistoryPage = () => {
     const submit =  (event) => {
         event.preventDefault();
         //do something
-        alert("hoe");
         let response =  fetch('http://localhost:8080/search', {
             method: 'POST',
             headers: {
@@ -30,15 +29,7 @@ const HistoryPage = () => {
 
               return date;
           });
-        // let response = await axios.post('http://localhost:8080/search',{
-        //     query:query
-        // }).then(function(response) {
-        //     alert(response[0].Nama_Penyakit);
-        //     return response;
-        // })
 
-        alert(response);
-        alert("slfjas;ldfkjasl;jfasl;kjfl;kasdjfl;asj");
     }
 
     return (
